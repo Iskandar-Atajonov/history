@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Registration form</title>
+        <style>
+            *{
+                margin: 0;
+                font-family: sans-serif;
+                scroll-behavior: smooth;
+            }
+            ::-webkit-scrollbar{
+                width: 0;
+            }
+            body{
+            overflow: hidden;
+            background: url(back.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            }
+            #main{
+                width: max-content;
+                height: 695px;
+            }
+            #content{
+            padding: 10px;
+            padding-bottom: 40px;
+            background: rgba(0,0,0,0.5);
+            width: 500px;
+            height: 630px;
+            backdrop-filter:blur(10px);
+            border-radius: 15px;
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            }
+            #container{
+            width: 98%; 
+            height: 98%;
+            }
+            input{
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            width: 90%;
+            font-family: sans-serif;
+            margin-bottom: 50px;
+            font-size:30px;
+            padding: 3px;
+            background: none;
+            color: #888;
+            border-bottom:5px solid aliceblue;
+            }
+            #pic{
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: url(back.jpg);
+            background-position: center;
+            background-size: cover;
+            }
+            #p{
+                margin-bottom: 50px;
+            display: flex;
+            width: 98%;
+            justify-content: center;
+            }
+            #btn{
+            width: 90%;
+            font-size: 30px;
+            padding: 5px;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 5px solid aliceblue;
+            color: aliceblue;
+            font-family: monospace;
+            font-weight: 900;
+                transition: 0.2s;
+            border-radius: 10px 0 10px 0;
+/*            animation: k 5s infinite;*/
+            }
+            #btn:hover{
+                color: black;
+                background: aliceblue;
+            }
+            @media(max-width:500px){
+                #content{
+                width: 100%;
+                height: 100vh;
+                margin: 0;
+                border-radius: 0px;
+                }
+            }
+            #date{
+            height: 50px
+            }
+            #sendMsg{
+                margin-top: 1800px;
+                position: absolute;
+            }
+            #send{
+                border: 2px solid aliceblue;
+                background-color: transparent;
+                border-radius: 15px;
+                position: absolute;
+                color: aliceblue;
+                font-size: 25px;
+                width: 100px;
+                height: 50px;
+            }
+            #messages{
+                border-radius: 5px;
+                border: 3px solid aliceblue;
+                width: 500px;
+                height: 600px;
+                overflow: scroll;
+                padding: 15px;
+                backdrop-filter: blur(20px);
+            }
+            #you{
+                position: absolute;
+                background-image: linear-gradient(43deg,#4158D0 0%,#C850C0 46%,#ffCC70);
+                -webkit-background-clip: text;
+                color: transparent;
+                font-size: 25px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                height:auto;
+                width: auto;
+                line-break: anywhere;
+            }
+            #mes1{
+                width: auto;
+                position:absolute;
+                float: left;
+                font-size: 25px;
+                color:aliceblue;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                height:auto;
+                line-break: anywhere;
+            }
+            #acc{
+                transform: translateX(1000px);
+                position: fixed;
+                transition: 1s;
+                width: 400px;
+                height: 300px;
+                border: 1px white solid;
+                z-index:1;
+                border-radius: 15px;
+                text-align: center;
+                align-items: center;
+                line-break: anywhere;
+                backdrop-filter: blur(70px);
+            }
+            #accept{
+                color: rgb(0, 255, 0);
+                font-size: 50px;
+                margin-top: 100px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                text-shadow: 0px 0px 20px rgb(0, 255, 0);
+            }
+            #hel{
+                color: aliceblue;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 25px;
+                text-shadow: 0px 0px 20px rgb(255, 255, 255);
+            }
+        </style>
+    
+    </head>
+    
+    <body>
+    <div id="acc">
+      <h1 id="accept">ACCEPTED</h1><br>
+      <p id="hel"></p>
+    </div>
+        <div id="main">
+    <div id="content">
+        
+    <div id="container">
+                <div id="p"><div id="pic"></div></div>
+        <input type="text" id="name" placeholder="Name..." autocomplete="off" required><br>
+        <input type="email" id="email" placeholder="Email..." autocomplete="off"><br>
+        <input type="password" id="password" placeholder="Password..." autocomplete="off" required><br>
+                <button id="btn">Send</button>
+        <script src="script.js"> </script>
+        
+    </div>
+        
+    </div>
+    </div>
+    
+
+  <div id="sendMsg">
+    <div id="messages">
+    </div>
+    <input type="text" id="message" placeholder="Message...">
+    <button onclick="module.send()" id="send">Send</button>
+  </div>
+  <script>
+    module = {}
+  </script>
+  <script type="module">
+    let name=document.getElementById("name")
+    let names;
+     if (sessionStorage.getItem("names")) {
+      names = sessionStorage.getItem("names")
+    }
+    else{
+      names = prompt("Your name...")
+      sessionStorage.setItem("names",names)
+    }
+    let password=document.getElementById("password")
+    let email=document.getElementById("email")
+    document.getElementById("btn").onclick =()=>{
+        if(name.value=="Black Wolf" && password.value=="11021110" && email.value=="blackwolf" || name.value=="White Wolf" && password.value=="11021110" && email.value=="whitewolf"){
+            document.body.style.overflow="visible"
+            document.getElementById("acc").style.transform="translateX(0px)"
+            document.getElementById("hel").innerHTML=`Hello ${name.value}`
+            setTimeout(() => {
+                document.getElementById("acc").style.transform="translateX(-1000px)"
+            }, 2000);
+        } 
+    }   
+    // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+  import { getDatabase,ref,set,remove,onChildAdded,onChildRemoved } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDFqUgFuKtZdMHfBpHt1Akm2ghXY0K2cAM",
+    authDomain: "chatting-ed1f1.firebaseapp.com",
+    databaseURL: "https://chatting-ed1f1-default-rtdb.firebaseio.com",
+    projectId: "chatting-ed1f1",
+    storageBucket: "chatting-ed1f1.appspot.com",
+    messagingSenderId: "953657631491",
+    appId: "1:953657631491:web:4f03a2cad938041a837f36"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app)
+    module.send = function send(){
+    let message=document.getElementById("message").value
+    let time = new Date().getTime();
+    set(ref(db,"messages/"+time),{
+      message:message,
+      name:names
+    })
+  }
+ 
+  onChildAdded(ref(db,"messages"),(data)=>{
+    let div = document.createElement("div")
+    let br=document.createElement("br")
+    div.id = "mes1"
+    if (data.val().name == names) {
+    div.id="you"
+    div.innerHTML = "You"+":"+data.val().message
+    }
+    else{
+    div.innerHTML = data.val().name+":"+data.val().message
+    }
+    document.getElementById("messages").appendChild(div)
+    document.getElementById("messages").appendChild(br)
+  })
+  </script>
+    </body>
+
+</html>
