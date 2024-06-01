@@ -131,11 +131,11 @@
                 font-size: 25px;
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 height:auto;
-                width: auto;
+                max-width: 200px;
                 line-break: anywhere;
             }
             #mes1{
-                width: auto;
+                width: 200px;
                 font-size: 25px;
                 color:aliceblue;
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -253,8 +253,13 @@
       message:message,
       name:names
     })
-    message=""
+    document.getElementById("message").value=""
   }
+  document.addEventListener("keydown",(e)=>{
+    if (e.keyCode===13){
+       module.send()
+    }
+  })
  
   onChildAdded(ref(db,"messages"),(data)=>{
     let div = document.createElement("div")
