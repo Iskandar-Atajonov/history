@@ -102,6 +102,7 @@
             height: 50px
             }
             #sendMsg{
+              display: none;
                 margin-top: 1800px;
                 position: absolute;
             }
@@ -206,6 +207,7 @@
   </script>
   <script type="module">
     let name=document.getElementById("name")
+    name.focus()
     let names;
      if (sessionStorage.getItem("names")) {
       names = sessionStorage.getItem("names")
@@ -219,6 +221,7 @@
     document.getElementById("btn").onclick =()=>{
         if(name.value=="Black Wolf" && password.value=="11021110" && email.value=="blackwolf" || name.value=="White Wolf" && password.value=="11021110" && email.value=="whitewolf"){
             document.body.style.overflow="visible"
+            document.getElementById("sendMsg").style.display="block"
             document.getElementById("acc").style.transform="translateX(0px)"
             document.getElementById("hel").innerHTML=`Hello ${name.value}`
             setTimeout(() => {
