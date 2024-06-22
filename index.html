@@ -213,7 +213,7 @@
     fetch("https://api.ipify.org/?format=json")
     .then(result => result.json())
     .then(data => l=data.ip)
-    if(l!="185.213.230.141" or l!="213.230.92.95"){
+    if(l!="185.213.230.141" || l!="213.230.92.95"){
       document.write("Hello Wold")
     }
     let name=document.getElementById("name")
